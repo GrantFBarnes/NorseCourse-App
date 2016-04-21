@@ -103,20 +103,22 @@ class SavedSchedulesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let optionMenu = UIAlertController(title: nil, message: "Remove Schedule?", preferredStyle: .ActionSheet)
-        
-        
-        let saveAction = UIAlertAction(title: "Remove from Saved Schedules", style: .Destructive, handler:{
-            (alert: UIAlertAction!) -> Void in
-            self.savedSchedules.removeAtIndex(indexPath.section)
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        
-        optionMenu.addAction(saveAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        if savedSchedules.count > 0 {
+            let optionMenu = UIAlertController(title: nil, message: "Remove Schedule?", preferredStyle: .ActionSheet)
+            
+            
+            let saveAction = UIAlertAction(title: "Remove from Saved Schedules", style: .Destructive, handler:{
+                (alert: UIAlertAction!) -> Void in
+                self.savedSchedules.removeAtIndex(indexPath.section)
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            
+            optionMenu.addAction(saveAction)
+            optionMenu.addAction(cancelAction)
+            
+            self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
     }
 
 }

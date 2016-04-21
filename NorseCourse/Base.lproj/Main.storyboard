@@ -36,7 +36,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Row" id="5u7-vC-3Xq" customClass="ResultsTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="Row" id="5u7-vC-3Xq" customClass="ResultsTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5u7-vC-3Xq" id="LB9-2B-IJN">
@@ -58,6 +58,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="p3E-6j-Dhl" secondAttribute="trailing" constant="33" id="9nN-MH-5hl"/>
                                 </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="rowLabel" destination="p3E-6j-Dhl" id="qbB-tb-juk"/>
                                     <segue destination="myR-1f-yh2" kind="show" identifier="showCourses" id="iCq-zn-eiT"/>
@@ -91,7 +92,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Course" rowHeight="71" id="oLd-ku-Q15" customClass="CourseTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="Course" rowHeight="71" id="oLd-ku-Q15" customClass="CourseTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oLd-ku-Q15" id="XvT-c0-djL">
@@ -121,6 +122,7 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="KOd-FY-tEa" secondAttribute="leading" id="rg8-hy-bgT"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="courseNameLabel" destination="KOd-FY-tEa" id="4Og-yZ-o2I"/>
                                     <outlet property="courseNumLabel" destination="n68-Ya-frh" id="mgn-Dw-adr"/>
@@ -235,7 +237,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="section" rowHeight="127" id="bbR-a8-xIH" customClass="SectionTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="section" rowHeight="127" id="bbR-a8-xIH" customClass="SectionTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bbR-a8-xIH" id="hIb-8z-Ekd">
@@ -283,6 +285,7 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="vAO-Oy-dmR" secondAttribute="leading" id="uzt-tT-IfX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="professorLabel" destination="Gus-ng-PZ6" id="67k-WH-aZQ"/>
                                     <outlet property="sectionNameLabel" destination="vAO-Oy-dmR" id="tyR-jR-GnO"/>
@@ -321,7 +324,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4VQ-hj-BgW">
-                                <rect key="frame" x="20" y="248" width="560" height="111"/>
+                                <rect key="frame" x="20" y="248" width="560" height="91"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Search by Faculty">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -331,7 +334,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="n6x-FH-ilE">
-                                <rect key="frame" x="20" y="8" width="560" height="112"/>
+                                <rect key="frame" x="20" y="48" width="560" height="92"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Search by Department">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -341,7 +344,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-Sf-vAF">
-                                <rect key="frame" x="20" y="128" width="560" height="112"/>
+                                <rect key="frame" x="20" y="148" width="560" height="92"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Search by Gen Ed">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -351,7 +354,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.94999998807907104" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eAV-0U-4tn">
-                                <rect key="frame" x="20" y="367" width="560" height="112"/>
+                                <rect key="frame" x="20" y="347" width="560" height="92"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Search by Keyword">
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -360,6 +363,17 @@
                                     <segue destination="sUG-o0-5Sc" kind="show" identifier="searchKeyword" id="XPI-MH-0qL"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hok-XB-DM4">
+                                <rect key="frame" x="20" y="0.0" width="560" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UQm-vW-1pY"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSp-Eh-T7v">
+                                <rect key="frame" x="20" y="447" width="560" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -367,19 +381,34 @@
                             <constraint firstAttribute="leadingMargin" secondItem="n6x-FH-ilE" secondAttribute="leading" id="Amd-xt-Krq"/>
                             <constraint firstItem="n6x-FH-ilE" firstAttribute="height" secondItem="nLS-Sf-vAF" secondAttribute="height" id="Bo0-36-P2Z"/>
                             <constraint firstItem="4VQ-hj-BgW" firstAttribute="height" secondItem="eAV-0U-4tn" secondAttribute="height" id="ClJ-YV-PGb"/>
+                            <constraint firstItem="hok-XB-DM4" firstAttribute="trailing" secondItem="p2Z-tB-Xfa" secondAttribute="trailingMargin" id="Dg8-5A-v8N"/>
+                            <constraint firstItem="vSp-Eh-T7v" firstAttribute="leading" secondItem="p2Z-tB-Xfa" secondAttribute="leadingMargin" id="Dnu-b0-tW5"/>
+                            <constraint firstItem="vSp-Eh-T7v" firstAttribute="height" secondItem="hok-XB-DM4" secondAttribute="height" id="EH2-5B-pmq"/>
+                            <constraint firstItem="hok-XB-DM4" firstAttribute="leading" secondItem="p2Z-tB-Xfa" secondAttribute="leadingMargin" id="FWn-qc-B0w"/>
+                            <constraint firstItem="IbG-rA-NDV" firstAttribute="top" secondItem="vSp-Eh-T7v" secondAttribute="bottom" id="FsP-91-GU3"/>
+                            <constraint firstItem="vSp-Eh-T7v" firstAttribute="top" secondItem="eAV-0U-4tn" secondAttribute="bottom" constant="8" id="Lwg-MJ-rYC"/>
                             <constraint firstItem="4VQ-hj-BgW" firstAttribute="top" secondItem="nLS-Sf-vAF" secondAttribute="bottom" constant="8" id="P8J-UY-L3f"/>
+                            <constraint firstItem="vSp-Eh-T7v" firstAttribute="trailing" secondItem="p2Z-tB-Xfa" secondAttribute="trailingMargin" id="QCQ-Co-gbN"/>
+                            <constraint firstItem="hok-XB-DM4" firstAttribute="top" secondItem="azU-Ol-mni" secondAttribute="bottom" id="SZk-Uu-Z65"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4VQ-hj-BgW" secondAttribute="trailing" id="SpM-Yx-t5z"/>
                             <constraint firstItem="eAV-0U-4tn" firstAttribute="top" secondItem="4VQ-hj-BgW" secondAttribute="bottom" constant="8" id="SwN-l2-zvd"/>
                             <constraint firstItem="nLS-Sf-vAF" firstAttribute="height" secondItem="4VQ-hj-BgW" secondAttribute="height" id="VzH-TP-O9N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eAV-0U-4tn" secondAttribute="trailing" id="cHO-Io-zYQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="n6x-FH-ilE" secondAttribute="trailing" id="dAS-Fb-Xcj"/>
+                            <constraint firstItem="n6x-FH-ilE" firstAttribute="top" secondItem="hok-XB-DM4" secondAttribute="bottom" constant="8" id="otY-rx-GH4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nLS-Sf-vAF" secondAttribute="trailing" id="ow5-xE-5Uq"/>
                             <constraint firstAttribute="leadingMargin" secondItem="eAV-0U-4tn" secondAttribute="leading" id="tfU-O7-iST"/>
-                            <constraint firstItem="IbG-rA-NDV" firstAttribute="top" secondItem="eAV-0U-4tn" secondAttribute="bottom" constant="8" id="ugY-wm-HdA"/>
-                            <constraint firstItem="n6x-FH-ilE" firstAttribute="top" secondItem="azU-Ol-mni" secondAttribute="bottom" constant="8" id="wHk-US-E1D"/>
+                            <constraint firstItem="IbG-rA-NDV" firstAttribute="top" secondItem="eAV-0U-4tn" secondAttribute="bottom" constant="40" id="ugY-wm-HdA"/>
+                            <constraint firstItem="n6x-FH-ilE" firstAttribute="top" secondItem="azU-Ol-mni" secondAttribute="bottom" constant="40" id="wHk-US-E1D"/>
                             <constraint firstAttribute="leadingMargin" secondItem="4VQ-hj-BgW" secondAttribute="leading" id="x6o-0T-9oH"/>
                             <constraint firstItem="nLS-Sf-vAF" firstAttribute="top" secondItem="n6x-FH-ilE" secondAttribute="bottom" constant="8" id="ya6-co-xkv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wHk-US-E1D"/>
+                                <exclude reference="ugY-wm-HdA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Search" id="J5l-Qo-ddP"/>
@@ -608,7 +637,7 @@ After all this is done, you now should be able to simply scroll through some of 
                             </variation>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="69" id="8gr-YH-cGN" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="CourseCell" rowHeight="69" id="8gr-YH-cGN" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="202" width="600" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8gr-YH-cGN" id="LcM-dF-0CN">
@@ -638,12 +667,13 @@ After all this is done, you now should be able to simply scroll through some of 
                                         <constraint firstAttribute="leadingMargin" secondItem="Eft-mw-IIE" secondAttribute="leading" id="s8d-dp-Wo8"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="courseNameLabel" destination="Eft-mw-IIE" id="jf0-Rf-WKU"/>
                                     <outlet property="courseNumLabel" destination="F3F-n0-WEn" id="tLj-my-iDz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionCell" rowHeight="127" id="ajz-TG-Q8G" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SectionCell" rowHeight="127" id="ajz-TG-Q8G" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="271" width="600" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ajz-TG-Q8G" id="8h0-jT-gkP">
@@ -691,6 +721,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                         <constraint firstItem="siX-d0-QiT" firstAttribute="leading" secondItem="8h0-jT-gkP" secondAttribute="leadingMargin" id="knN-9j-KVC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="sectionNameLabel" destination="Uwz-5M-fZG" id="IxF-Vy-Q1F"/>
                                     <outlet property="sectionProfessorLabel" destination="RzY-Mv-o9Y" id="tXj-1h-VzZ"/>
@@ -698,7 +729,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                     <outlet property="sectionTitleLabel" destination="SPl-Rh-gMH" id="XXm-Vy-xb9"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenEdCell" rowHeight="39" id="1My-dJ-9sO" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="GenEdCell" rowHeight="39" id="1My-dJ-9sO" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="398" width="600" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1My-dJ-9sO" id="Ljl-JO-83R">
@@ -721,6 +752,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="jGP-wc-Ndx" secondAttribute="bottom" constant="9" id="Mvn-jw-VZf"/>
                                 </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="genEdLabel" destination="jGP-wc-Ndx" id="AzN-cT-von"/>
                                 </connections>
@@ -754,7 +786,7 @@ After all this is done, you now should be able to simply scroll through some of 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Row" rowHeight="76" id="AuH-2B-VUN" customClass="GenEdTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="Row" rowHeight="76" id="AuH-2B-VUN" customClass="GenEdTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AuH-2B-VUN" id="zov-1y-Jlo">
@@ -780,6 +812,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="rowLabel" destination="He5-u9-6Hu" id="vGD-TY-ZWR"/>
                                 </connections>
@@ -853,7 +886,7 @@ After all this is done, you now should be able to simply scroll through some of 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="savedCell" rowHeight="138" id="9UR-Q4-0b5" customClass="SavedScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="savedCell" rowHeight="138" id="9UR-Q4-0b5" customClass="SavedScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9UR-Q4-0b5" id="rAO-wn-0Rg">
@@ -901,6 +934,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                         <constraint firstItem="4SI-q2-gHh" firstAttribute="trailing" secondItem="rAO-wn-0Rg" secondAttribute="trailingMargin" id="s8Q-s8-AZO"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="courseNameLabel" destination="Gzp-gr-sHk" id="Q4D-bp-K6P"/>
                                     <outlet property="courseNumLabel" destination="7V7-R5-usW" id="edb-xS-tNQ"/>
@@ -947,7 +981,7 @@ After all this is done, you now should be able to simply scroll through some of 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="scheduleRow" rowHeight="137" id="dBt-f5-pTa" customClass="ScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="scheduleRow" rowHeight="137" id="dBt-f5-pTa" customClass="ScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="137"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBt-f5-pTa" id="9Q0-z8-rnG">
@@ -998,6 +1032,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="FQD-0B-mna" secondAttribute="bottom" constant="9" id="Yh3-cJ-OXS"/>
                                 </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Yh3-cJ-OXS"/>
@@ -1010,7 +1045,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                     <outlet property="professorLabel" destination="FQD-0B-mna" id="NCZ-Rm-v2u"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="loadRow" rowHeight="39" id="zds-c4-vcD" customClass="ScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="loadRow" rowHeight="39" id="zds-c4-vcD" customClass="ScheduleTableViewCell" customModule="NorseCourse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="165" width="600" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zds-c4-vcD" id="NCW-Jr-bzN">
@@ -1031,6 +1066,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                         <constraint firstAttribute="bottomMargin" secondItem="ht4-kH-MzJ" secondAttribute="bottom" constant="1" id="zkG-lc-HzR"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="loadLabel" destination="ht4-kH-MzJ" id="cED-7a-mQk"/>
                                 </connections>
