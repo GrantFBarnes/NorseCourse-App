@@ -82,7 +82,7 @@ class SectionViewController: UIViewController {
                 self.updateUI()
                 
             } else {
-                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, or Blaise has unplugged his blaising fast server.", preferredStyle: .Alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 alert.addAction(defaultAction)
                 self.presentViewController(alert, animated: true, completion: nil)
