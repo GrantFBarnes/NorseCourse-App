@@ -331,7 +331,6 @@
                                 </state>
                                 <connections>
                                     <action selector="askSortMethod:" destination="GOk-RQ-nlY" eventType="touchUpInside" id="IwG-C2-Dwg"/>
-                                    <segue destination="nF9-XF-zpm" kind="show" identifier="showFaculty" id="EXT-7Q-wgk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="n6x-FH-ilE">
@@ -413,10 +412,13 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Search" id="J5l-Qo-ddP"/>
+                    <connections>
+                        <segue destination="nF9-XF-zpm" kind="show" identifier="showFaculty" id="Re0-9l-ayA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9M-S6-HIy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-1056"/>
+            <point key="canvasLocation" x="653" y="-1056"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="dm0-qe-B1k">
@@ -1139,7 +1141,7 @@ After all this is done, you now should be able to simply scroll through some of 
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eUV-mq-Cyj"/>
-        <segue reference="EXT-7Q-wgk"/>
+        <segue reference="Re0-9l-ayA"/>
         <segue reference="iCq-zn-eiT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -121,7 +121,6 @@ class ResultsTableViewController: UITableViewController {
     }
     
     
-    
     private func sortFaculty(names: [String]) -> [String] {
 
         for name in names {
