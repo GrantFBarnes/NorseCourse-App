@@ -63,21 +63,27 @@ class GenEdTableViewController: UITableViewController {
     private func getRows() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let genedURL: NSURL = NSURL(string: "https://norsecourse.com:5000/api/genEds")!
-            let data = NSData(contentsOfURL: genedURL)!
+            if let data = NSData(contentsOfURL: genedURL) {
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                
-                if let dict = json as? Array<[String:AnyObject]> {
-                    for ge in dict {
-                        self.genedsDic["\(ge["abbreviation"]!)" + " - " + "\(ge["name"]!)"] = "\(ge["genEdId"]!)"
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    
+                    if let dict = json as? Array<[String:AnyObject]> {
+                        for ge in dict {
+                            self.genedsDic["\(ge["abbreviation"]!)" + " - " + "\(ge["name"]!)"] = "\(ge["genEdId"]!)"
+                        }
                     }
+                    
+                } catch {
+                    print("error serializing JSON: \(error)")
                 }
-                
-            } catch {
-                print("error serializing JSON: \(error)")
+                self.geneds = self.genedsDic.keys.sort()
+            } else {
+                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(defaultAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.geneds = self.genedsDic.keys.sort()
         })
     }
 

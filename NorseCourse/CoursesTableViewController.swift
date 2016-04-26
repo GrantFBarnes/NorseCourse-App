@@ -100,86 +100,8 @@ class CoursesTableViewController: UITableViewController {
                     let url = "https://norsecourse.com:5000/api/courses?departments="+self.id!
                     
                     let departmentsURL: NSURL = NSURL(string: url)!
-                    let data = NSData(contentsOfURL: departmentsURL)!
+                    if let data = NSData(contentsOfURL: departmentsURL) {
                     
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for course in dict {
-                                self.courses.append(self.elimnateNulls(course))
-                            }
-                        }
-                        
-                    } catch {
-                        print("error serializing JSON: \(error)")
-                    }
-                    
-                    self.courses = self.courses.sort(self.sortCourses)
-                })
-                
-                
-            case "Search by Gen Ed":
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let url = "https://norsecourse.com:5000/api/courses?genEds="+self.id!
-                    
-                    let genedsURL: NSURL = NSURL(string: url)!
-                    let data = NSData(contentsOfURL: genedsURL)!
-                    
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for course in dict {
-                                self.courses.append(self.elimnateNulls(course))
-                            }
-                        }
-                        
-                    } catch {
-                        print("error serializing JSON: \(error)")
-                    }
-                    
-                    self.courses = self.courses.sort(self.sortCourses)
-                })
-
-                
-            case "Search by Faculty":
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let url = "https://norsecourse.com:5000/api/sections?facultyId="+self.id!
-                    
-                    let facultyURL: NSURL = NSURL(string: url)!
-                    let data = NSData(contentsOfURL: facultyURL)!
-                    
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for course in dict {
-                                self.courses.append(self.elimnateNulls(course))
-                            }
-                        }
-                        
-                    } catch {
-                        print("error serializing JSON: \(error)")
-                    }
-                    
-                    self.courses = self.courses.sort(self.sortCourses)
-                })
-                
-            
-            case "Search by Keyword":
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if let kw = self.keyword {
-                        let keyword = kw.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-                        
-                        let url = "https://norsecourse.com:5000/api/courses?keywords="+keyword
-                        
-                        let keywordURL: NSURL = NSURL(string: url)!
-                        let data = NSData(contentsOfURL: keywordURL)!
-                        
                         do {
                             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                             
@@ -194,6 +116,111 @@ class CoursesTableViewController: UITableViewController {
                         }
                         
                         self.courses = self.courses.sort(self.sortCourses)
+                        
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                })
+                
+                
+            case "Search by Gen Ed":
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let url = "https://norsecourse.com:5000/api/courses?genEds="+self.id!
+                    
+                    let genedsURL: NSURL = NSURL(string: url)!
+                    if let data = NSData(contentsOfURL: genedsURL) {
+                    
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? Array<[String:AnyObject]> {
+                                for course in dict {
+                                    self.courses.append(self.elimnateNulls(course))
+                                }
+                            }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
+                        }
+                        
+                        self.courses = self.courses.sort(self.sortCourses)
+                        
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                })
+
+                
+            case "Search by Faculty":
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let url = "https://norsecourse.com:5000/api/sections?facultyId="+self.id!
+                    
+                    let facultyURL: NSURL = NSURL(string: url)!
+                    if let data = NSData(contentsOfURL: facultyURL) {
+                    
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? Array<[String:AnyObject]> {
+                                for course in dict {
+                                    self.courses.append(self.elimnateNulls(course))
+                                }
+                            }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
+                        }
+                        
+                        self.courses = self.courses.sort(self.sortCourses)
+                        
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                })
+                
+            
+            case "Search by Keyword":
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if let kw = self.keyword {
+                        let keyword = kw.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+                        
+                        let url = "https://norsecourse.com:5000/api/courses?keywords="+keyword
+                        
+                        let keywordURL: NSURL = NSURL(string: url)!
+                        if let data = NSData(contentsOfURL: keywordURL) {
+                        
+                            do {
+                                let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                                
+                                if let dict = json as? Array<[String:AnyObject]> {
+                                    for course in dict {
+                                        self.courses.append(self.elimnateNulls(course))
+                                    }
+                                }
+                                
+                            } catch {
+                                print("error serializing JSON: \(error)")
+                            }
+                            
+                            self.courses = self.courses.sort(self.sortCourses)
+                        } else {
+                            let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            alert.addAction(defaultAction)
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        }
                     }
                 })
                 

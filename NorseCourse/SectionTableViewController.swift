@@ -102,21 +102,28 @@ class SectionTableViewController: UITableViewController {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let url = "https://norsecourse.com:5000/api/sections?courses="+String(self.info["courseId"]!)
             let sectionURL: NSURL = NSURL(string: url)!
-            let data = NSData(contentsOfURL: sectionURL)!
+            if let data = NSData(contentsOfURL: sectionURL) {
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                
-                if let dict = json as? Array<[String:AnyObject]> {
-                    for sect in dict {
-                        self.sections.append(self.elimnateNulls(sect))
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    
+                    if let dict = json as? Array<[String:AnyObject]> {
+                        for sect in dict {
+                            self.sections.append(self.elimnateNulls(sect))
+                        }
                     }
+                    
+                } catch {
+                    print("error serializing JSON: \(error)")
                 }
+                self.sections = self.sections.sort(self.sortSections)
                 
-            } catch {
-                print("error serializing JSON: \(error)")
+            } else {
+                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(defaultAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.sections = self.sections.sort(self.sortSections)
         })
     }
     

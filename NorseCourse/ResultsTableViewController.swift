@@ -96,63 +96,82 @@ class ResultsTableViewController: UITableViewController {
             case "Search by Department":
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     let departmentsURL: NSURL = NSURL(string: "https://norsecourse.com:5000/api/departments")!
-                    let data = NSData(contentsOfURL: departmentsURL)!
-                    
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for depart in dict {
-                                self.departmentsDic["\(depart["name"]!)"] = "\(depart["departmentId"]!)"
+                    if let data = NSData(contentsOfURL: departmentsURL) {
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? Array<[String:AnyObject]> {
+                                for depart in dict {
+                                    self.departmentsDic["\(depart["name"]!)"] = "\(depart["departmentId"]!)"
+                                }
                             }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
                         }
+                        self.departments = self.departmentsDic.keys.sort()
                         
-                    } catch {
-                        print("error serializing JSON: \(error)")
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
-                    self.departments = self.departmentsDic.keys.sort()
                 })
                 
                 
             case "Search by Gen Ed":
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     let genedURL: NSURL = NSURL(string: "https://norsecourse.com:5000/api/genEds")!
-                    let data = NSData(contentsOfURL: genedURL)!
+                    if let data = NSData(contentsOfURL: genedURL) {
                     
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for ge in dict {
-                                self.genedsDic["\(ge["abbreviation"]!)" + " - " + "\(ge["name"]!)"] = "\(ge["genEdId"]!)"
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? Array<[String:AnyObject]> {
+                                for ge in dict {
+                                    self.genedsDic["\(ge["abbreviation"]!)" + " - " + "\(ge["name"]!)"] = "\(ge["genEdId"]!)"
+                                }
                             }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
                         }
+                        self.geneds = self.genedsDic.keys.sort()
                         
-                    } catch {
-                        print("error serializing JSON: \(error)")
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
-                    self.geneds = self.genedsDic.keys.sort()
                 })
 
                 
             case "Search by Faculty":
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     let facultyURL: NSURL = NSURL(string: "https://norsecourse.com:5000/api/faculty")!
-                    let data = NSData(contentsOfURL: facultyURL)!
+                    if let data = NSData(contentsOfURL: facultyURL) {
                     
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? Array<[String:AnyObject]> {
-                            for f in dict {
-                                self.facultyDic["\(f["name"]!)"] = "\(f["facultyId"]!)"
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? Array<[String:AnyObject]> {
+                                for f in dict {
+                                    self.facultyDic["\(f["name"]!)"] = "\(f["facultyId"]!)"
+                                }
                             }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
                         }
-                        
-                    } catch {
-                        print("error serializing JSON: \(error)")
+                        self.faculty = self.facultyDic.keys.sort()
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
-                    self.faculty = self.facultyDic.keys.sort()
                 })
             default: break
             

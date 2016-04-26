@@ -66,20 +66,27 @@ class SectionViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let url = "https://norsecourse.com:5000/api/courses/"+String(self.course["courseId"]!)
             let sectionURL: NSURL = NSURL(string: url)!
-            let data = NSData(contentsOfURL: sectionURL)!
+            if let data = NSData(contentsOfURL: sectionURL){
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                
-                if let dict = json as? [String:AnyObject] {
-                    self.course = self.elimnateNulls(dict)
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    
+                    if let dict = json as? [String:AnyObject] {
+                        self.course = self.elimnateNulls(dict)
+                    }
+                    
+                    
+                } catch {
+                    print("error serializing JSON: \(error)")
                 }
+                self.updateUI()
                 
-                
-            } catch {
-                print("error serializing JSON: \(error)")
+            } else {
+                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(defaultAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.updateUI()
         })
     }
     

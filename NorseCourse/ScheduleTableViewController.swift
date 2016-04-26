@@ -22,7 +22,11 @@ class ScheduleTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
-    var schedules = [[String:AnyObject]]()
+    var schedules = [[String:AnyObject]]() {
+        didSet {
+            getAllSchedules()
+        }
+    }
     
     var numSections: Int?
     
@@ -124,6 +128,7 @@ class ScheduleTableViewController: UITableViewController {
     }
     
     private func getAllSchedules() {
+        print("should get here")
         
         dispatch_group_async(dispatch_group_create(), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)) {
             
@@ -136,17 +141,23 @@ class ScheduleTableViewController: UITableViewController {
                     let url = "https://norsecourse.com:5000/api/sections/" + String(addon[sect])
                     
                     let scheduleURL: NSURL = NSURL(string: url)!
-                    let data = NSData(contentsOfURL: scheduleURL)!
+                    if let data = NSData(contentsOfURL: scheduleURL) {
                     
-                    do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                        
-                        if let dict = json as? [String:AnyObject] {
-                            temp.append(dict)
+                        do {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                            
+                            if let dict = json as? [String:AnyObject] {
+                                temp.append(dict)
+                            }
+                            
+                        } catch {
+                            print("error serializing JSON: \(error)")
                         }
-                        
-                    } catch {
-                        print("error serializing JSON: \(error)")
+                    } else {
+                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }
                 big_temp.append(temp)
@@ -262,6 +273,11 @@ class ScheduleTableViewController: UITableViewController {
                     print("error serializing JSON: \(error)")
                 }
                 self.schedules += temp
+            } else {
+                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alert.addAction(defaultAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
@@ -381,7 +397,6 @@ class ScheduleTableViewController: UITableViewController {
                 numSections = schedules.count
                 startidx = String(schedules[schedules.count-1]["index"]!)
                 self.tableView.reloadData()
-                self.refresh()
             }
         } else {
             let optionMenu = UIAlertController(title: nil, message: "Save Schedule?", preferredStyle: .ActionSheet)

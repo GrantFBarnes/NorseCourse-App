@@ -568,7 +568,7 @@ After all this is done, you now should be able to simply scroll through some of 
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="JXZ-CY-ZJg" customClass="ScheduleForm" customModule="NorseCourse" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QIC-Zz-UzK">
@@ -582,30 +582,30 @@ After all this is done, you now should be able to simply scroll through some of 
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-bu-Z4y">
-                                    <rect key="frame" x="8" y="57" width="584" height="30"/>
-                                    <state key="normal" title="Clear All Criteria">
+                                    <rect key="frame" x="8" y="57" width="189" height="30"/>
+                                    <state key="normal" title="❌Clear">
                                         <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="clearDefaults:" destination="sgT-oc-fCu" eventType="touchUpInside" id="Un9-J4-wpI"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kaV-Zo-qFE">
-                                    <rect key="frame" x="8" y="95" width="584" height="30"/>
-                                    <state key="normal" title="Add Course/Section">
-                                        <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="GOk-RQ-nlY" kind="show" identifier="addCourse" id="eUV-mq-Cyj"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6xC-1D-bcH">
-                                    <rect key="frame" x="8" y="133" width="584" height="30"/>
-                                    <state key="normal" title="Add Gen Ed">
+                                    <rect key="frame" x="403" y="57" width="189" height="30"/>
+                                    <state key="normal" title="➕Gen Ed">
                                         <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <segue destination="RkR-Hj-wsP" kind="show" identifier="showGenEds" id="qv2-An-SsO"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kaV-Zo-qFE">
+                                    <rect key="frame" x="205" y="57" width="190" height="30"/>
+                                    <state key="normal" title="➕Course/Section">
+                                        <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="GOk-RQ-nlY" kind="show" identifier="addCourse" id="eUV-mq-Cyj"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -613,20 +613,22 @@ After all this is done, you now should be able to simply scroll through some of 
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="6xC-1D-bcH" secondAttribute="bottom" constant="8" id="04t-Rc-Pjw"/>
                                 <constraint firstAttribute="bottom" secondItem="6xC-1D-bcH" secondAttribute="bottom" constant="8" id="1Q6-or-jHI"/>
-                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="leading" secondItem="JXZ-CY-ZJg" secondAttribute="leadingMargin" id="6jm-6n-LgE"/>
-                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="top" secondItem="GIn-bu-Z4y" secondAttribute="bottom" constant="8" id="DVL-HX-Tou"/>
-                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="top" secondItem="QIC-Zz-UzK" secondAttribute="bottom" constant="8" id="GH4-jb-rEI"/>
+                                <constraint firstAttribute="bottom" secondItem="kaV-Zo-qFE" secondAttribute="bottom" constant="20" id="AmD-3H-nhe"/>
+                                <constraint firstAttribute="trailing" secondItem="6xC-1D-bcH" secondAttribute="trailing" constant="8" id="F1V-Ty-WqE"/>
+                                <constraint firstAttribute="bottom" secondItem="GIn-bu-Z4y" secondAttribute="bottom" constant="20" id="Gno-OP-ja5"/>
                                 <constraint firstItem="QIC-Zz-UzK" firstAttribute="leading" secondItem="JXZ-CY-ZJg" secondAttribute="leadingMargin" id="HL1-77-jDq"/>
-                                <constraint firstItem="6xC-1D-bcH" firstAttribute="leading" secondItem="JXZ-CY-ZJg" secondAttribute="leadingMargin" id="HjG-qH-nke"/>
-                                <constraint firstItem="6xC-1D-bcH" firstAttribute="top" secondItem="kaV-Zo-qFE" secondAttribute="bottom" constant="8" id="MI5-TA-auF"/>
+                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="top" secondItem="QIC-Zz-UzK" secondAttribute="bottom" constant="8" id="IiV-lw-s4z"/>
+                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="leading" secondItem="JXZ-CY-ZJg" secondAttribute="leading" constant="8" id="REE-LI-vv2"/>
+                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="leading" secondItem="GIn-bu-Z4y" secondAttribute="trailing" constant="8" id="TFH-Kn-CgJ"/>
+                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="width" secondItem="6xC-1D-bcH" secondAttribute="width" id="Ti0-Uj-qq7"/>
                                 <constraint firstAttribute="bottom" secondItem="6xC-1D-bcH" secondAttribute="bottom" constant="6" id="X3P-2p-s8r"/>
-                                <constraint firstItem="6xC-1D-bcH" firstAttribute="trailing" secondItem="JXZ-CY-ZJg" secondAttribute="trailingMargin" id="bvf-y0-2MB"/>
-                                <constraint firstAttribute="bottom" secondItem="6xC-1D-bcH" secondAttribute="bottom" constant="11" id="cRo-r1-ssV"/>
                                 <constraint firstItem="QIC-Zz-UzK" firstAttribute="top" secondItem="JXZ-CY-ZJg" secondAttribute="top" constant="8" id="cjR-AP-vQU"/>
-                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="trailing" secondItem="JXZ-CY-ZJg" secondAttribute="trailingMargin" id="ejB-Ud-1a3"/>
-                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="leading" secondItem="JXZ-CY-ZJg" secondAttribute="leadingMargin" id="fsz-sz-Da5"/>
+                                <constraint firstAttribute="bottom" secondItem="6xC-1D-bcH" secondAttribute="bottom" constant="20" id="hgg-xf-kGL"/>
                                 <constraint firstItem="QIC-Zz-UzK" firstAttribute="trailing" secondItem="JXZ-CY-ZJg" secondAttribute="trailingMargin" id="hlT-6a-OSB"/>
-                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="trailing" secondItem="JXZ-CY-ZJg" secondAttribute="trailingMargin" id="uxu-vD-spD"/>
+                                <constraint firstItem="kaV-Zo-qFE" firstAttribute="top" secondItem="QIC-Zz-UzK" secondAttribute="bottom" constant="8" id="lha-p8-RfY"/>
+                                <constraint firstItem="6xC-1D-bcH" firstAttribute="top" secondItem="QIC-Zz-UzK" secondAttribute="bottom" constant="8" id="o6g-Z5-Dow"/>
+                                <constraint firstItem="GIn-bu-Z4y" firstAttribute="width" secondItem="kaV-Zo-qFE" secondAttribute="width" id="tWt-Lo-UZD"/>
+                                <constraint firstItem="6xC-1D-bcH" firstAttribute="leading" secondItem="kaV-Zo-qFE" secondAttribute="trailing" constant="8" id="vJW-du-XOm"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -638,7 +640,7 @@ After all this is done, you now should be able to simply scroll through some of 
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="CourseCell" rowHeight="69" id="8gr-YH-cGN" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="202" width="600" height="69"/>
+                                <rect key="frame" x="0.0" y="135" width="600" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8gr-YH-cGN" id="LcM-dF-0CN">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
@@ -674,7 +676,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SectionCell" rowHeight="127" id="ajz-TG-Q8G" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="271" width="600" height="127"/>
+                                <rect key="frame" x="0.0" y="204" width="600" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ajz-TG-Q8G" id="8h0-jT-gkP">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="126"/>
@@ -730,7 +732,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="GenEdCell" rowHeight="39" id="1My-dJ-9sO" customClass="PlanTableViewCell" customModule="NorseCourse" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="398" width="600" height="39"/>
+                                <rect key="frame" x="0.0" y="331" width="600" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1My-dJ-9sO" id="Ljl-JO-83R">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
