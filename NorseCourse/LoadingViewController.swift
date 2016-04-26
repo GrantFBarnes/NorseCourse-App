@@ -225,6 +225,10 @@ class LoadingViewController: UIViewController {
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 alert.addAction(defaultAction)
                 self.presentViewController(alert, animated: true, completion: nil)
+                
+                self.spinner.stopAnimating()
+                self.spinner.hidden = true
+                self.messageLabel.text = "Fix your network problem before trying this again"
             }
         })
     }
