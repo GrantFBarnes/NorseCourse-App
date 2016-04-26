@@ -40,8 +40,15 @@ class ResultsTableViewController: UITableViewController {
                             cvc.selection = geneds[indexPath.row]
                             cvc.id = genedsDic[geneds[indexPath.row]]
                         case "Search by Faculty":
-                            cvc.selection = faculty[indexPath.row]
-                            cvc.id = facultyDic[faculty[indexPath.row]]
+                            if sortMethod == "FI" {
+                                cvc.selection = faculty[indexPath.row]
+                                cvc.id = facultyDic[faculty[indexPath.row]]
+                            } else {
+                                cvc.selection = lastNameFaculty[indexPath.row]
+                                let name = changeOrder(lastNameFaculty[indexPath.row])
+                                print(name)
+                                cvc.id = facultyDic[name]
+                            }
                         default: cvc.selection = ""
                         }
                     }
@@ -73,7 +80,15 @@ class ResultsTableViewController: UITableViewController {
             refresh()
         }
     }
+    var lastNameFaculty = [String]() {
+        didSet {
+            tableView.reloadData()
+            refresh()
+        }
+    }
+    
     var category: String?
+    var sortMethod: String?
     
     
     private func refresh() {
@@ -88,6 +103,48 @@ class ResultsTableViewController: UITableViewController {
         tableView.reloadData()
         sender?.endRefreshing()
     }
+    
+    
+    private func changeOrder(name: String) -> String {
+        var string = ""
+
+        for person in name.componentsSeparatedByString(", ") {
+            if string != "" {
+                string += ","
+            }
+            let nameArr = person.componentsSeparatedByString(". ")
+            if nameArr.count == 2 {
+                string += nameArr[1] + "." + nameArr[0]
+            }
+        }
+        return string
+    }
+    
+    
+    
+    private func sortFaculty(names: [String]) -> [String] {
+
+        for name in names {
+            var string = ""
+            for person in name.componentsSeparatedByString(",") {
+                if string != "" {
+                    string += ", "
+                }
+                let nameArr = person.componentsSeparatedByString(".")
+                if nameArr.count == 2 {
+                    string += nameArr[1] + ". " + nameArr[0]
+                }
+            }
+            if string != "" {
+                lastNameFaculty.append(string)
+            }
+        }
+        
+        lastNameFaculty = lastNameFaculty.sort()
+        return lastNameFaculty
+    }
+    
+    
     
     private func getRows() {
 
@@ -166,6 +223,7 @@ class ResultsTableViewController: UITableViewController {
                             print("error serializing JSON: \(error)")
                         }
                         self.faculty = self.facultyDic.keys.sort()
+                        self.lastNameFaculty = self.sortFaculty(self.faculty)
                     } else {
                         let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, not NorseCourses.", preferredStyle: .Alert)
                         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -195,7 +253,11 @@ class ResultsTableViewController: UITableViewController {
             case "Search by Gen Ed":
                 return geneds.count
             case "Search by Faculty":
-                return faculty.count
+                if sortMethod == "FI" {
+                    return faculty.count
+                } else {
+                    return lastNameFaculty.count
+                }
             default: return 0
             }
         }
@@ -213,7 +275,11 @@ class ResultsTableViewController: UITableViewController {
             case "Search by Gen Ed":
                 cell.info = geneds[indexPath.row]
             case "Search by Faculty":
-                cell.info = faculty[indexPath.row]
+                if sortMethod == "FI" {
+                    cell.info = faculty[indexPath.row]
+                } else {
+                    cell.info = lastNameFaculty[indexPath.row]
+                }
             default: cell.info = ""
             }
         }

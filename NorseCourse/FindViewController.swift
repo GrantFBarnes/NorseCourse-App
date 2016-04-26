@@ -22,6 +22,38 @@ class FindViewController: UIViewController {
 
     }
     
+    @IBAction func askSortMethod(sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: "Choose Sort Method", preferredStyle: .ActionSheet)
+        
+        
+        let first = UIAlertAction(title: "Sort by First Initial", style: .Default, handler:{
+            (alert: UIAlertAction!) -> Void in
+            self.sortMethod = "FI"
+        })
+        
+        let last = UIAlertAction(title: "Sort by Last Name", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.sortMethod = "LN"
+        })
+        
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        optionMenu.addAction(first)
+        optionMenu.addAction(last)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    
+    
+    var sortMethod: String? {
+        didSet {
+            performSegueWithIdentifier("showFaculty", sender: 0)
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
@@ -37,9 +69,8 @@ class FindViewController: UIViewController {
                 resultsVC.category = b.currentTitle
             case "showFaculty":
                 let resultsVC = segue.destinationViewController as! ResultsTableViewController
-                let b = sender as! UIButton
-                
-                resultsVC.category = b.currentTitle
+                resultsVC.category = "Search by Faculty"
+                resultsVC.sortMethod = sortMethod
             default: break
             }
         }
