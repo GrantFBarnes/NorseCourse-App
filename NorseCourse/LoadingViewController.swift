@@ -97,12 +97,10 @@ class LoadingViewController: UIViewController {
     
     private func getSchedules() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            var url = "https://norsecourse.com:5000/api/schedules?"
-            
-            var multiple = false
+            var url = "https://norsecourse.com:5000/api/schedules?limit=50"
             
             if self.preferredCourses.count > 0 {
-                multiple = true
+                url += "&"
                 url += "preferredCourses="
                 var count = 0
                 for course in self.preferredCourses {
@@ -116,10 +114,7 @@ class LoadingViewController: UIViewController {
             }
             
             if self.requiredCourses.count > 0 {
-                if multiple {
-                    url += "&"
-                }
-                multiple = true
+                url += "&"
                 url += "requiredCourses="
                 var count = 0
                 for course in self.requiredCourses {
@@ -133,10 +128,7 @@ class LoadingViewController: UIViewController {
             }
             
             if self.preferredSections.count > 0 {
-                if multiple {
-                    url += "&"
-                }
-                multiple = true
+                url += "&"
                 url += "preferredSections="
                 var count = 0
                 for course in self.preferredSections {
@@ -150,10 +142,7 @@ class LoadingViewController: UIViewController {
             }
             
             if self.requiredSections.count > 0 {
-                if multiple {
-                    url += "&"
-                }
-                multiple = true
+                url += "&"
                 url += "requiredSections="
                 var count = 0
                 for course in self.requiredSections {
@@ -167,10 +156,7 @@ class LoadingViewController: UIViewController {
             }
             
             if self.requiredGenEds.count > 0 {
-                if multiple {
-                    url += "&"
-                }
-                multiple = true
+                url += "&"
                 url += "requiredGenEds="
                 var count = 0
                 for course in self.requiredGenEds {
@@ -184,10 +170,7 @@ class LoadingViewController: UIViewController {
             }
             
             if self.preferredGenEds.count > 0 {
-                if multiple {
-                    url += "&"
-                }
-                multiple = true
+                url += "&"
                 url += "preferredGenEds="
                 var count = 0
                 for course in self.preferredGenEds {
