@@ -10,6 +10,7 @@
 		DF0D33251CC6F55000917336 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0D33241CC6F55000917336 /* LoadingViewController.swift */; };
 		DF3063851CC06E2900E7D9FB /* SectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3063841CC06E2900E7D9FB /* SectionTableViewController.swift */; };
 		DF3063871CC06E5A00E7D9FB /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3063861CC06E5A00E7D9FB /* SectionTableViewCell.swift */; };
+		DF6A2B951CD24DCD00848D5D /* defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6A2B941CD24DCD00848D5D /* defaults.swift */; };
 		DF72530C1CC93D6E00A9F057 /* SavedSchedulesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF72530B1CC93D6E00A9F057 /* SavedSchedulesTableViewController.swift */; };
 		DF72530E1CC93DE800A9F057 /* SavedScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF72530D1CC93DE800A9F057 /* SavedScheduleTableViewCell.swift */; };
 		DF9BD78F1CBD74AC00C59029 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9BD78E1CBD74AC00C59029 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		DF0D33241CC6F55000917336 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		DF3063841CC06E2900E7D9FB /* SectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTableViewController.swift; sourceTree = "<group>"; };
 		DF3063861CC06E5A00E7D9FB /* SectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
+		DF6A2B941CD24DCD00848D5D /* defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defaults.swift; sourceTree = "<group>"; };
 		DF72530B1CC93D6E00A9F057 /* SavedSchedulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSchedulesTableViewController.swift; sourceTree = "<group>"; };
 		DF72530D1CC93DE800A9F057 /* SavedScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		DF9BD78B1CBD74AC00C59029 /* NorseCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NorseCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				DF9BD78E1CBD74AC00C59029 /* AppDelegate.swift */,
+				DF6A2B941CD24DCD00848D5D /* defaults.swift */,
 				DF9BD7921CBD74AC00C59029 /* Main.storyboard */,
 				DFDC8D531CC168E000504229 /* SearchViewController.swift */,
 				DF3063861CC06E5A00E7D9FB /* SectionTableViewCell.swift */,
@@ -315,6 +318,7 @@
 			files = (
 				DFD6A1751CC6C6DC0049A694 /* ScheduleTableViewController.swift in Sources */,
 				DF72530C1CC93D6E00A9F057 /* SavedSchedulesTableViewController.swift in Sources */,
+				DF6A2B951CD24DCD00848D5D /* defaults.swift in Sources */,
 				DFAF8A331CC02357008DD2B7 /* ResultsTableViewController.swift in Sources */,
 				DFD6A16F1CC6AD910049A694 /* GenEdTableViewController.swift in Sources */,
 				DFD6A1731CC6AFDF0049A694 /* GenEdTableViewCell.swift in Sources */,

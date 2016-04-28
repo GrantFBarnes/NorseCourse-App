@@ -50,8 +50,6 @@ class LoadingViewController: UIViewController {
             case "showSchedules":
                 let svc = segue.destinationViewController as! ScheduleTableViewController
                 svc.schedules = schedules
-                svc.startidx = String(schedules[schedules.count-1]["index"]!)
-                svc.numSections = schedules.count
                 svc.allschedules = allschedules
             default: break
             }
@@ -233,35 +231,35 @@ class LoadingViewController: UIViewController {
         })
     }
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+//    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqCourses") }
+        get { return information.requiredCourses! }
+        set { information.requiredCourses = newValue }
     }
     
     var preferredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefCourses") }
+        get { return information.preferredCourses! }
+        set { information.preferredCourses = newValue }
     }
     
     var requiredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqSections") }
+        get { return information.requiredSections! }
+        set { information.requiredSections = newValue }
     }
     
     var preferredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefSections") }
+        get { return information.preferredSections! }
+        set { information.preferredSections = newValue }
     }
     
     var requiredGenEds: [String] {
-        get { return defaults.objectForKey("reqGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqGenEds") }
+        get { return information.requiredGenEds! }
+        set { information.requiredGenEds = newValue }
     }
     
     var preferredGenEds: [String] {
-        get { return defaults.objectForKey("prefGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefGenEds") }
+        get { return information.preferredGenEds! }
+        set { information.preferredGenEds = newValue }
     }
 }

@@ -26,27 +26,23 @@ class SectionTableViewController: UITableViewController {
     private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqCourses") }
+        get { return information.requiredCourses! }
+        set { information.requiredCourses = newValue }
     }
     
     var preferredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? [] }
-        set {
-            defaults.setObject(newValue, forKey: "prefCourses")
-        }
+        get { return information.preferredCourses! }
+        set { information.preferredCourses = newValue }
     }
     
     var requiredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? [] }
-        set {
-            defaults.setObject(newValue, forKey: "reqSections")
-        }
+        get { return information.requiredSections! }
+        set { information.requiredSections = newValue }
     }
     
     var preferredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefSections") }
+        get { return information.preferredSections! }
+        set { information.preferredSections = newValue }
     }
     
     var info = [String:AnyObject]()

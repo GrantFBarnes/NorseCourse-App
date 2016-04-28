@@ -9,6 +9,10 @@
 import UIKit
 
 class PlanTableViewController: UITableViewController {
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +26,6 @@ class PlanTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
         refresh()
-        setUserDefaultsListener()
     }
     
     
@@ -48,71 +51,55 @@ class PlanTableViewController: UITableViewController {
     }
     
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+//    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? [] }
+        get { return information.requiredCourses! }
         set {
-            defaults.setObject(newValue, forKey: "reqCourses")
+            information.requiredCourses = newValue
             tableView.reloadData()
         }
     }
     
     var preferredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? [] }
+        get { return information.preferredCourses! }
         set {
-            defaults.setObject(newValue, forKey: "prefCourses")
+            information.preferredCourses = newValue
             tableView.reloadData()
         }
     }
     
     var requiredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? [] }
+        get { return information.requiredSections! }
         set {
-            defaults.setObject(newValue, forKey: "reqSections")
+            information.requiredSections = newValue
             tableView.reloadData()
         }
     }
     
     var preferredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? [] }
+        get { return information.preferredSections! }
         set {
-            defaults.setObject(newValue, forKey: "prefSections")
+            information.preferredSections = newValue
             tableView.reloadData()
         }
     }
     
     var requiredGenEds: [String] {
-        get { return defaults.objectForKey("reqGenEds") as? [String] ?? [] }
+        get { return information.requiredGenEds! }
         set {
-            defaults.setObject(newValue, forKey: "reqGenEds")
+            information.requiredGenEds = newValue
             tableView.reloadData()
         }
     }
     
     var preferredGenEds: [String] {
-        get { return defaults.objectForKey("prefGenEds") as? [String] ?? [] }
+        get { return information.preferredGenEds! }
         set {
-            defaults.setObject(newValue, forKey: "prefGenEds")
+            information.preferredGenEds = newValue
             tableView.reloadData()
         }
     }
-    
-    
-    func setUserDefaultsListener(){
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "reqCourses", options: NSKeyValueObservingOptions.New, context: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "prefCourses", options: NSKeyValueObservingOptions.New, context: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "reqSections", options: NSKeyValueObservingOptions.New, context: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "prefSections", options: NSKeyValueObservingOptions.New, context: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "reqGenEds", options: NSKeyValueObservingOptions.New, context: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "prefGenEds", options: NSKeyValueObservingOptions.New, context: nil)
-    }
-    
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        tableView.reloadData()
-    }
-    
 
     var sections = [0:"Required Courses",1:"Required Sections",2:"Preferred Courses",3:"Preferred Sections",4:"Required Gen Eds",5:"Preferred GenEds"]
 
@@ -121,7 +108,6 @@ class PlanTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
     }
-    
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]

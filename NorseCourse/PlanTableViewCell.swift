@@ -21,36 +21,36 @@ class PlanTableViewCell: UITableViewCell {
     @IBOutlet weak var genEdLabel: UILabel!
     
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+//    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqCourses") }
+        get { return information.requiredCourses! }
+        set { information.requiredCourses = newValue }
     }
     
     var preferredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefCourses") }
+        get { return information.preferredCourses! }
+        set { information.preferredCourses = newValue }
     }
     
     var requiredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqSections") }
+        get { return information.requiredSections! }
+        set { information.requiredSections = newValue }
     }
     
     var preferredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefSections") }
+        get { return information.preferredSections! }
+        set { information.preferredSections = newValue }
     }
     
     var requiredGenEds: [String] {
-        get { return defaults.objectForKey("reqGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqGenEds") }
+        get { return information.requiredGenEds! }
+        set { information.requiredGenEds = newValue }
     }
     
     var preferredGenEds: [String] {
-        get { return defaults.objectForKey("prefGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefGenEds") }
+        get { return information.preferredGenEds! }
+        set { information.preferredGenEds = newValue }
     }
 
     
@@ -96,8 +96,6 @@ class PlanTableViewCell: UITableViewCell {
                 courseNameLabel?.text = "Go to find tab to add some"
             }
         }
-        
-        
         
         if section == "Required Sections" {
             if requiredSections.count > 0 {

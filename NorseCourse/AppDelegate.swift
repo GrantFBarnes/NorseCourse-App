@@ -25,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(information.preferredCourses, forKey: "prefCourses")
+        defaults.setObject(information.requiredCourses, forKey: "reqCourses")
+        defaults.setObject(information.preferredSections, forKey: "prefSections")
+        defaults.setObject(information.requiredSections, forKey: "reqSections")
+        defaults.setObject(information.requiredGenEds, forKey: "reqGenEds")
+        defaults.setObject(information.preferredGenEds, forKey: "prefGenEds")
+        defaults.setObject(information.savedSchedules, forKey: "savedSchedules")
+        defaults.synchronize()
+
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -34,6 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        information.preferredSections = defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? []
+        information.requiredSections = defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? []
+        information.preferredCourses = defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? []
+        information.requiredCourses = defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? []
+        information.preferredGenEds = defaults.objectForKey("prefGenEds") as? [String] ?? []
+        information.requiredGenEds = defaults.objectForKey("reqGenEds") as? [String] ?? []
+        information.savedSchedules = defaults.objectForKey("savedSchedules") as? [[[String:String]]] ?? []
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

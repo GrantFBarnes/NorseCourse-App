@@ -22,27 +22,13 @@ class ScheduleTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
-    var schedules = [[String:AnyObject]]() {
-        didSet {
-            getAllSchedules()
-        }
-    }
-    
-    var numSections: Int?
-    
-    var startidx: String? {
-        didSet {
-            loadMore()
-        }
-    }
-    
+    var schedules = [[String:AnyObject]]()
     var allschedules = [[[String:AnyObject]]]() {
         didSet {
             tableView.reloadData()
             refresh()
         }
     }
-    
     
     private func refresh() {
         if refreshControl != nil {
@@ -55,13 +41,6 @@ class ScheduleTableViewController: UITableViewController {
         tableView.reloadData()
         sender?.endRefreshing()
     }
-    
-
-    @IBAction func register(sender: UIButton) {
-        let url = NSURL(string: "my.luther.edu")!
-        UIApplication.sharedApplication().openURL(url)
-    }
-    
     
     private func getSelectedSchedule(indexPath: NSIndexPath) -> [[String:String]] {
         
@@ -126,204 +105,13 @@ class ScheduleTableViewController: UITableViewController {
         
         return returnSchedule
     }
-    
-    private func getAllSchedules() {
-        print("should get here")
-        
-        dispatch_group_async(dispatch_group_create(), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)) {
-            
-            var big_temp = [[[String:AnyObject]]]()
-            for schedule in 0..<self.schedules.count {
-                var temp = [[String:AnyObject]]()
-                for sect in 0..<self.schedules[schedule]["schedule"]!.count {
-                    
-                    let addon = (self.schedules[schedule]["schedule"]!) as! [Int]
-                    let url = "https://norsecourse.com:5000/api/sections/" + String(addon[sect])
-                    
-                    let scheduleURL: NSURL = NSURL(string: url)!
-                    if let data = NSData(contentsOfURL: scheduleURL) {
-                    
-                        do {
-                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                            
-                            if let dict = json as? [String:AnyObject] {
-                                temp.append(dict)
-                            }
-                            
-                        } catch {
-                            print("error serializing JSON: \(error)")
-                        }
-                    } else {
-                        let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, or Blaise has unplugged his blaising fast server.", preferredStyle: .Alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                        alert.addAction(defaultAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
-                    }
-                }
-                big_temp.append(temp)
-            }
-            self.allschedules += big_temp
-        }
-    }
-    
-    
-    private func getSchedules(startidx: String) {
-        dispatch_group_async(dispatch_group_create(), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)) {
-            var url = "https://norsecourse.com:5000/api/schedules?index="+startidx
 
-            if self.preferredCourses.count > 0 {
-                url += "&"
-                url += "preferredCourses="
-                var count = 0
-                for course in self.preferredCourses {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + String(course["courseId"]!)
-                    } else {
-                        url += String(course["courseId"]!)
-                    }
-                }
-            }
-            
-            if self.requiredCourses.count > 0 {
-                url += "&"
-                url += "requiredCourses="
-                var count = 0
-                for course in self.requiredCourses {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + String(course["courseId"]!)
-                    } else {
-                        url += String(course["courseId"]!)
-                    }
-                }
-            }
-            
-            if self.preferredSections.count > 0 {
-                url += "&"
-                url += "preferredSections="
-                var count = 0
-                for course in self.preferredSections {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + String(course["id"]!)
-                    } else {
-                        url += String(course["id"]!)
-                    }
-                }
-            }
-            
-            if self.requiredSections.count > 0 {
-                url += "&"
-                url += "requiredSections="
-                var count = 0
-                for course in self.requiredSections {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + String(course["id"]!)
-                    } else {
-                        url += String(course["id"]!)
-                    }
-                }
-            }
-            
-            if self.requiredGenEds.count > 0 {
-                url += "&"
-                url += "requiredGenEds="
-                var count = 0
-                for course in self.requiredGenEds {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + course.characters.split{$0 == " "}.map(String.init)[0]
-                    } else {
-                        url += course.characters.split{$0 == " "}.map(String.init)[0]
-                    }
-                }
-            }
-            
-            if self.preferredGenEds.count > 0 {
-                url += "&"
-                url += "preferredGenEds="
-                var count = 0
-                for course in self.preferredGenEds {
-                    count += 1
-                    if count > 1 {
-                        url += "%2C" + course.characters.split{$0 == " "}.map(String.init)[0]
-                    } else {
-                        url += course.characters.split{$0 == " "}.map(String.init)[0]
-                    }
-                }
-            }
-            
-            let scheduleURL: NSURL = NSURL(string: url)!
-            print(scheduleURL)
-            if let data = NSData(contentsOfURL: scheduleURL) {
-                
-                var temp = [[String:AnyObject]]()
-                do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                    
-                    if let dict = json as? Array<[String:AnyObject]> {
-                        for schedule in dict {
-                            temp.append(schedule)
-                        }
-                    }
-                    
-                } catch {
-                    print("error serializing JSON: \(error)")
-                }
-                self.schedules += temp
-            } else {
-                let alert = UIAlertController(title: "Error", message: "There appears to be a network error. This is your problem to fix, or Blaise has unplugged his blaising fast server.", preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                alert.addAction(defaultAction)
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    private let defaults = NSUserDefaults.standardUserDefaults()
-    
-    var requiredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqCourses") }
-    }
-    
-    var preferredCourses: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefCourses") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefCourses") }
-    }
-    
-    var requiredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("reqSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqSections") }
-    }
-    
-    var preferredSections: [[String:AnyObject]] {
-        get { return defaults.objectForKey("prefSections") as? [[String:AnyObject]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefSections") }
-    }
-    
-    var requiredGenEds: [String] {
-        get { return defaults.objectForKey("reqGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqGenEds") }
-    }
-    
-    var preferredGenEds: [String] {
-        get { return defaults.objectForKey("prefGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefGenEds") }
-    }
     
     var savedSchedules: [[[String:String]]] {
-        get { return defaults.objectForKey("savedSchedules") as? [[[String:String]]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "savedSchedules") }
+        get { return information.savedSchedules! }
+        set { information.savedSchedules = newValue }
     }
-    
-    private func loadMore() {
-        dispatch_group_async(dispatch_group_create(), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)) {
-            self.getSchedules(self.startidx!)
-        }
-    }
+
     
     // MARK: - Table view data source
     
@@ -338,9 +126,6 @@ class ScheduleTableViewController: UITableViewController {
         if allschedules.count <= 1 {
             return "No Schedules"
         }
-        if numSections == section {
-            return "More Schedules"
-        }
         return "Schedule #"+String(section+1)
     }
 
@@ -348,18 +133,11 @@ class ScheduleTableViewController: UITableViewController {
         if allschedules.count <= 1 {
             return 1
         }
-        if schedules.count%20 == 0 {
-            return schedules.count + 1
-        } else {
-            return schedules.count
-        }
+        return schedules.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if allschedules.count <= 1 {
-            return 1
-        }
-        if numSections == section {
             return 1
         }
         return max(schedules[section]["schedule"]!.count,1)
@@ -368,54 +146,39 @@ class ScheduleTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> ScheduleTableViewCell {
         
         // Configure the cell...
-        if numSections != indexPath.section {
-            let cell = tableView.dequeueReusableCellWithIdentifier("scheduleRow", forIndexPath: indexPath) as! ScheduleTableViewCell
-            if allschedules.count > 1 {
-                cell.section = allschedules[indexPath.section][indexPath.row]
-                cell.error = schedules[indexPath.section]["error"]! as? String ?? "no error returned"
-                return cell
-            } else {
-                let alertController = UIAlertController(title: "Error", message:
-                    schedules[indexPath.section]["error"]! as? String, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                
-                self.presentViewController(alertController, animated: true, completion: nil)
-                cell.error = schedules[indexPath.section]["error"]! as? String ?? "no error returned"
-                return cell
-            }
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("scheduleRow", forIndexPath: indexPath) as! ScheduleTableViewCell
+        if allschedules.count > 1 {
+            cell.section = allschedules[indexPath.section][indexPath.row]
+            cell.error = schedules[indexPath.section]["error"]! as? String ?? "no error returned"
+            return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("loadRow", forIndexPath: indexPath) as! ScheduleTableViewCell
-            cell.load = true
+            let alertController = UIAlertController(title: "Error", message:
+                schedules[indexPath.section]["error"]! as? String, preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            cell.error = schedules[indexPath.section]["error"]! as? String ?? "no error returned"
             return cell
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == numSections {
-            if schedules.count - Int(numSections!) > 1 {
-                numSections = schedules.count
-                startidx = String(schedules[schedules.count-1]["index"]!)
-                self.tableView.reloadData()
-            }
-        } else {
-            let optionMenu = UIAlertController(title: nil, message: "Save Schedule?", preferredStyle: .ActionSheet)
+
+        let optionMenu = UIAlertController(title: nil, message: "Save Schedule?", preferredStyle: .ActionSheet)
+        
+        let saveAction = UIAlertAction(title: "Add to Saved Schedules", style: .Default, handler:{
+            (alert: UIAlertAction!) -> Void in
             
-            
-            let saveAction = UIAlertAction(title: "Add to Saved Schedules", style: .Default, handler:{
-                (alert: UIAlertAction!) -> Void in
-                
-                let save = self.getSelectedSchedule(indexPath)
-                self.savedSchedules.append(save)
-            })
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            
-            optionMenu.addAction(saveAction)
-            optionMenu.addAction(cancelAction)
-            
-            self.presentViewController(optionMenu, animated: true, completion: nil)
-        }
+            let save = self.getSelectedSchedule(indexPath)
+            self.savedSchedules.append(save)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
     }
     
 }

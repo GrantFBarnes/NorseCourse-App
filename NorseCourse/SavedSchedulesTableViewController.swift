@@ -9,6 +9,10 @@
 import UIKit
 
 class SavedSchedulesTableViewController: UITableViewController {
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,6 @@ class SavedSchedulesTableViewController: UITableViewController {
         self.tabBarController?.tabBar.tintColor = UIColor.whiteColor()
         self.tableView.estimatedRowHeight = 80
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        setUserDefaultsListener()
     }
     
     @IBAction func clearSavedSchedules(sender: UIButton) {
@@ -41,21 +44,13 @@ class SavedSchedulesTableViewController: UITableViewController {
         sender?.endRefreshing()
     }
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
-    
     var savedSchedules: [[[String:String]]] {
-        get { return defaults.objectForKey("savedSchedules") as? [[[String:String]]] ?? [] }
-        set { defaults.setObject(newValue, forKey: "savedSchedules") }
+        get { return information.savedSchedules! }
+        set {
+            information.savedSchedules = newValue
+            tableView.reloadData()
+        }
     }
-    
-    func setUserDefaultsListener(){
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "savedSchedules", options: NSKeyValueObservingOptions.New, context: nil)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        tableView.reloadData()
-    }
-
 
     // MARK: - Table view data source
 
@@ -121,5 +116,4 @@ class SavedSchedulesTableViewController: UITableViewController {
             self.presentViewController(optionMenu, animated: true, completion: nil)
         }
     }
-
 }

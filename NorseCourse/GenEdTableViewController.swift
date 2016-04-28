@@ -47,16 +47,16 @@ class GenEdTableViewController: UITableViewController {
     }
     
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+//    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredGenEds: [String] {
-        get { return defaults.objectForKey("reqGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "reqGenEds") }
+        get { return information.requiredGenEds! }
+        set { information.requiredGenEds = newValue }
     }
     
     var preferredGenEds: [String] {
-        get { return defaults.objectForKey("prefGenEds") as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: "prefGenEds") }
+        get { return information.preferredGenEds! }
+        set { information.preferredGenEds = newValue }
     }
     
     
