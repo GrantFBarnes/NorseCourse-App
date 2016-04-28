@@ -231,7 +231,6 @@ class LoadingViewController: UIViewController {
         })
     }
     
-//    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
         get { return information.requiredCourses! }

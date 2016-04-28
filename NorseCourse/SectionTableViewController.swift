@@ -23,7 +23,6 @@ class SectionTableViewController: UITableViewController {
         getRows()
     }
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var requiredCourses: [[String:AnyObject]] {
         get { return information.requiredCourses! }

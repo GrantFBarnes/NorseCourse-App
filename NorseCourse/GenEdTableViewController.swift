@@ -47,8 +47,6 @@ class GenEdTableViewController: UITableViewController {
     }
     
     
-//    private let defaults = NSUserDefaults.standardUserDefaults()
-    
     var requiredGenEds: [String] {
         get { return information.requiredGenEds! }
         set { information.requiredGenEds = newValue }

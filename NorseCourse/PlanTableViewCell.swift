@@ -21,8 +21,6 @@ class PlanTableViewCell: UITableViewCell {
     @IBOutlet weak var genEdLabel: UILabel!
     
     
-//    private let defaults = NSUserDefaults.standardUserDefaults()
-    
     var requiredCourses: [[String:AnyObject]] {
         get { return information.requiredCourses! }
         set { information.requiredCourses = newValue }
