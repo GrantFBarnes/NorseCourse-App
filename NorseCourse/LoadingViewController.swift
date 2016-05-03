@@ -32,6 +32,8 @@ class LoadingViewController: UIViewController {
         }
     }
     
+    var amount: String?
+    
     var allGenEds = [String:Int]()
     
     var allschedules = [[[String:AnyObject]]]() {
@@ -97,7 +99,7 @@ class LoadingViewController: UIViewController {
     
     private func getSchedules() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            var url = "https://norsecourse.com:5000/api/schedules?limit=50"
+            var url = "https://norsecourse.com:5000/api/schedules?limit="+self.amount!
             
             if self.preferredCourses.count > 0 {
                 url += "&"

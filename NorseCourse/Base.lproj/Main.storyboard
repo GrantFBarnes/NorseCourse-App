@@ -581,7 +581,7 @@ After all this is done, you now should be able to simply scroll through some of 
                                         <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <segue destination="zqw-dC-tjB" kind="show" identifier="showLoading" id="QSO-ds-ceT"/>
+                                        <action selector="askAmount:" destination="sgT-oc-fCu" eventType="touchUpInside" id="BIp-re-sM1"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-bu-Z4y">
@@ -776,6 +776,9 @@ After all this is done, you now should be able to simply scroll through some of 
                             <action selector="refresh:" destination="sgT-oc-fCu" eventType="valueChanged" id="BYl-1d-F5K"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="zqw-dC-tjB" kind="show" identifier="showLoading" id="kWP-y8-djB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rN6-AL-Ly2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

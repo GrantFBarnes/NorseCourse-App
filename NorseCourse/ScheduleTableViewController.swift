@@ -25,6 +25,7 @@ class ScheduleTableViewController: UITableViewController {
     var schedules = [[String:AnyObject]]()
     var allschedules = [[[String:AnyObject]]]() {
         didSet {
+
             tableView.reloadData()
             refresh()
         }
@@ -123,7 +124,8 @@ class ScheduleTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if allschedules.count <= 1 {
+
+        if allschedules.count <= 1 && (schedules[0]["schedule"]!.count) == 0 {
             return "No Schedules"
         }
         return "Schedule #"+String(section+1)
@@ -133,11 +135,12 @@ class ScheduleTableViewController: UITableViewController {
         if allschedules.count <= 1 {
             return 1
         }
+        
         return schedules.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if allschedules.count <= 1 {
+        if allschedules.count <= 1 && (schedules[0]["schedule"]!.count) == 0 {
             return 1
         }
         return max(schedules[section]["schedule"]!.count,1)
@@ -147,7 +150,7 @@ class ScheduleTableViewController: UITableViewController {
         
         // Configure the cell...
         let cell = tableView.dequeueReusableCellWithIdentifier("scheduleRow", forIndexPath: indexPath) as! ScheduleTableViewCell
-        if allschedules.count > 1 {
+        if allschedules.count > 0 && (schedules[0]["schedule"]!.count) != 0 {
             cell.section = allschedules[indexPath.section][indexPath.row]
             cell.error = schedules[indexPath.section]["error"]! as? String ?? "no error returned"
             return cell

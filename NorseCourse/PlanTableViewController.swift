@@ -38,6 +38,55 @@ class PlanTableViewController: UITableViewController {
         preferredGenEds = []
     }
     
+    private var scheduleAmount: String?{
+        didSet {
+            performSegueWithIdentifier("showLoading", sender: 0)
+        }
+    }
+    
+    @IBAction func askAmount(sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: "Choose Amount of Schedules", preferredStyle: .ActionSheet)
+        
+        
+        let ten = UIAlertAction(title: "10", style: .Default, handler:{
+            (alert: UIAlertAction!) -> Void in
+            self.scheduleAmount = "10"
+        })
+        
+        let twentyfive = UIAlertAction(title: "25", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.scheduleAmount = "25"
+        })
+        
+        let fifty = UIAlertAction(title: "50", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.scheduleAmount = "50"
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        optionMenu.addAction(ten)
+        optionMenu.addAction(twentyfive)
+        optionMenu.addAction(fifty)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showLoading":
+                let lvc = segue.destinationViewController as! LoadingViewController
+                
+                lvc.amount = self.scheduleAmount
+
+            default: break
+            }
+        }
+    }
+    
     func refresh() {
         if refreshControl != nil {
             refreshControl?.beginRefreshing()
