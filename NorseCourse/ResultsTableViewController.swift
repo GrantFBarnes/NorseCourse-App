@@ -46,7 +46,6 @@ class ResultsTableViewController: UITableViewController {
                             } else {
                                 cvc.selection = lastNameFaculty[indexPath.row]
                                 let name = changeOrder(lastNameFaculty[indexPath.row])
-                                print(name)
                                 cvc.id = facultyDic[name]
                             }
                         default: cvc.selection = ""
